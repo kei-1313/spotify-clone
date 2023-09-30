@@ -17,6 +17,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
 
   const router = useRouter();
+  console.log(router);
+  
 
   const handleLogout = () => {
     //Handle logout in the future
