@@ -9,13 +9,16 @@ const getSongs = async (): Promise<Song[]> => {
   });
 
   
-  console.log(supabase);
+  // console.log(supabase);
   
   
   const { data, error } = await supabase
   .from('songs')
   .select('*')
   .order('created_at', { ascending: false })
+
+  console.log(data);
+  
 
   if (error) {
     console.log(error.message);
