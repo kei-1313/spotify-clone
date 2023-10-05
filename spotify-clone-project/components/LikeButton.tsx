@@ -23,13 +23,16 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const authModal = useAuthModal();
   const { user } = useUser();
 
+  //このstateでいいねしているかを判断している
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
+  //songId supabaseClient user.idに変更がある場合、実行される
   useEffect(() => {
     if (!user?.id) {
       return;
     }
   
+    //データベースからいいねしているひとつだけ曲を取得
     const fetchData = async () => {
       const { data, error } = await supabaseClient
         .from('liked_songs')
@@ -54,6 +57,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     }
 
     if (isLiked) {
+      //特定のユーザで特定の曲をデータベースから消す
       const { error } = await supabaseClient
         .from('liked_songs')
         .delete()
@@ -66,6 +70,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         setIsLiked(false);
       }
     } else {
+      //特定のユーザで特定の曲をデータベースにいれる
       const { error } = await supabaseClient
         .from('liked_songs')
         .insert({

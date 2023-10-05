@@ -9,9 +9,6 @@ const getSongs = async (): Promise<Song[]> => {
   });
 
   
-  // console.log(supabase);
-  
-  
   const { data, error } = await supabase
   .from('songs')
   .select('*')
