@@ -3,6 +3,7 @@ import Link from "next/link"
 import { IconType } from 'react-icons';
 import { twMerge } from 'tailwind-merge'
 
+//activeは条件分岐で定義しているので、nullが返ってくる場合があるがある、そのため？をつけている
 interface SidebarItemProps {
   icon: IconType
   label: string
