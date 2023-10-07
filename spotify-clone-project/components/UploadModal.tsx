@@ -53,7 +53,7 @@ const UploadModal = () => {
 
       const uniqueID = uniqid();
 
-      // Upload song
+      // 曲をstorageに格納
       const { 
         data: songData, 
         error: songError 
@@ -70,7 +70,7 @@ const UploadModal = () => {
           return toast.error('Failed song upload');
         }
         
-      // Upload image
+      // 画像をstorageに格納
       const { 
         data: imageData, 
         error: imageError
@@ -87,7 +87,7 @@ const UploadModal = () => {
         return toast.error('Failed image upload');
       }
 
-      // Create record 
+      // データベースに入力内容を保存、画像と曲はpath
       const { error: supabaseError } = await supabaseClient
         .from('songs')
         .insert({
