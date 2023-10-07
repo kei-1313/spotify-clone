@@ -5,6 +5,7 @@ import { Song } from "@/types";
 
 import getSongs from "./getSongs";
 
+//検索バーで入力した値をtitleとして受け取り、データベースからマッチするものを検索して返す関数
 const getSongsByTitle = async (title: string): Promise<Song[]> => {
   const supabase = createServerComponentClient({
     cookies: cookies
