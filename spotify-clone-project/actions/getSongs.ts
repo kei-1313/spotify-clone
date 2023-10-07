@@ -14,7 +14,7 @@ const getSongs = async (): Promise<Song[]> => {
   .select('*')
   .order('created_at', { ascending: false })
 
-  console.log(data);
+  // console.log(data);
   
 
   if (error) {

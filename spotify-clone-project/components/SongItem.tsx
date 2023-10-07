@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Song } from "@/types";
 import Image from 'next/image';
 import useLoadImage from '@/hooks/useLoadImage';
 import PlayButton from './PlayButton';
-
+import formatDate  from '@/utils/formatDate'
 interface SongItemProps {
   data: Song;
   onClick: (id: string) => void;
@@ -14,6 +14,23 @@ const SongItem: React.FC<SongItemProps> = ({
   onClick
 }) => {
   const imagePath = useLoadImage(data);
+
+  const [isNew, setIsNew] = useState(false)
+  const date = formatDate(data.created_at)
+  
+  useEffect(() => {
+    const createdDate = new Date(data.created_at)
+    const threeDayAgoDate = new Date()
+    threeDayAgoDate.setDate(threeDayAgoDate.getDate() - 3)
+    
+    if(createdDate >= threeDayAgoDate) {
+      setIsNew(true)
+    } else {
+      setIsNew(false)
+    }
+    
+  }, [])
+  
   
   return ( 
     <div
@@ -67,6 +84,10 @@ const SongItem: React.FC<SongItemProps> = ({
         >
           By {data.author}
         </p>
+        <div className='flex justify-between w-full'>
+          <p className='text-neutral-400 text-sm'>{ date }</p>
+          {isNew ? <p className='text-green-500 text-sm font-bold'>NEW</p> : ''}
+        </div>
       </div>
       <div 
         className="
