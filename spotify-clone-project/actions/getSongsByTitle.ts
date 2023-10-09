@@ -16,6 +16,7 @@ const getSongsByTitle = async (title: string): Promise<Song[]> => {
     return allSongs;
   }
 
+  //タイトルからデータベースを検索
   const { data, error } = await supabase
     .from('songs')
     .select('*')
