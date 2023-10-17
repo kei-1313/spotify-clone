@@ -9,7 +9,7 @@ interface RecommendContentProps {
   songs: Song[]
 }
 
-export const RecommendContent: React.FC<RecommendContentProps> = ({
+const RecommendContent: React.FC<RecommendContentProps> = ({
   songs
 }) => {
   
@@ -23,12 +23,13 @@ export const RecommendContent: React.FC<RecommendContentProps> = ({
       const randomStartIndex = Math.floor(Math.random() * newArray.length);
       return newArray.splice(randomStartIndex, 1)[0];
     });
+    
     return randomArray;
   }
 
   useEffect(() => {
-    randomRecommendSelected(songs, 3)
-  },[recommendSongs])
+    setRecommendSongs(randomRecommendSelected(songs, 3))
+  },[])
 
   return (
     <div 
@@ -50,3 +51,5 @@ export const RecommendContent: React.FC<RecommendContentProps> = ({
     </div>
   )
 }
+
+export default RecommendContent
